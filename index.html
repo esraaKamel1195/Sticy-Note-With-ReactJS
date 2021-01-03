@@ -23,13 +23,32 @@
 
         <script type="text/babel">
             class Note extends React.Component {
-                editing() {
-                    alert( 'editing' );
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        editing: false
+                    }
+                }
+                editing = () => {
+                    this.setState({ editing: true })
+                }
+                save = () => {
+                    this.setState({ editing: false })
                 }
                 deleting() {
                     alert( 'deleting' );
                 }
-                render() {
+                renderForm = () => {
+                    return (
+                        <div className="note">
+                           <textarea name="" id="" cols="30" rows="7"></textarea>
+                            <span>
+                                <button onClick={this.save}>Save</button>
+                            </span>
+                        </div>
+                    )
+                }
+                renderDisplay = () => {
                     return (
                         <div className="note">
                             <p>{this.props.children}</p>
@@ -39,6 +58,14 @@
                             </span>
                         </div>
                     )
+                }
+                render() {
+                   if( this.state.editing ) {
+                       return this.renderForm();
+                   }
+                   else {
+                       return this.renderDisplay();
+                   }
                 }
             }
             ReactDOM.render( <Note>Hello world!</Note>, document.getElementById( "react-container" ));
