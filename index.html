@@ -3,30 +3,45 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <ti tle>Document</title>
+        <title>Document</title>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <style>
+            .note {
+                width: 250px;
+                height: 150px;
+                background-color: yellow;
+                padding: 15px;
+                border: 1px solid orange;
+                box-shadow: 2px 6px 12px rgb(0, 0, 0, 0.2);
+            }
+        </style>
     </head>
     <body>
         <div id="react-container"></div>
 
         <script type="text/babel">
-        class MyComponent extends React.Component
-        {
-           render () {
-                return  <div>
-                            <h1>{this.props.text}</h1>
+            class Note extends React.Component {
+                editing() {
+                    alert( 'editing' );
+                }
+                deleting() {
+                    alert( 'deleting' );
+                }
+                render() {
+                    return (
+                        <div className="note">
                             <p>{this.props.children}</p>
+                            <span>
+                                <button onClick={this.editing}>Editing</button>
+                                <button onClick={this.deleting}>Deleting</button>
+                            </span>
                         </div>
+                    )
+                }
             }
-        }
-        ReactDOM.render (   <div>
-                                <MyComponent text="Bye world">Message One</MyComponent>
-                                <MyComponent text="Hello world">Message Two</MyComponent>
-                                <MyComponent text="Welcome world">Message Three</MyComponent>
-                            </div> , document.getElementById('react-container') 
-                        );
+            ReactDOM.render( <Note>Hello world!</Note>, document.getElementById( "react-container" ));
         </script>
     </body>
 </html>
