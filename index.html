@@ -71,6 +71,15 @@
                 }
             }
             ReactDOM.render( <Note>Hello world!</Note>, document.getElementById( "react-container" ));
+
+            class Board extends React.Component {
+                render () {
+                    return (
+                        <div className="board"> {this.props.count} </div>
+                    )
+                }
+            }
+            ReactDOM.render( <Board count={10} />, document.getElementById( "react-container" ));
         </script>
     </body>
 </html>
