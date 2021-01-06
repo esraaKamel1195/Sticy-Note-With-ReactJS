@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Sticy note</title>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
@@ -33,6 +33,8 @@
                     this.setState({ editing: true })
                 }
                 save = () => {
+                    let value = this.refs.editingValue.value;
+                    alert(value);
                     this.setState({ editing: false })
                 }
                 deleting() {
@@ -41,7 +43,7 @@
                 renderForm = () => {
                     return (
                         <div className="note">
-                           <textarea name="" id="" cols="30" rows="7"></textarea>
+                           <textarea ref="editingValue" cols="30" rows="7"></textarea>
                             <span>
                                 <button onClick={this.save}>Save</button>
                             </span>
